@@ -4,6 +4,11 @@ This repository serves as my testbed for the Flush+Reload exploit. It hosts my
 own implementation of it on bare-metal Linux.
 
 
+## Running
+
+Run with `nimble run`, and test with `nimble test`
+
+
 ## References
 
 I found the original paper \[1\] most helpful. It covers most of the details
