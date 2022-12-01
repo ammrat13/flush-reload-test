@@ -1,2 +1,8 @@
-# Ignore executable
-flush_reload_test
+# Ignore build output
+/flush_reload_test
+/build/
+/nimcache/
+
+# Ignore test output
+/tests/t*
+!/tests/t*.nim
