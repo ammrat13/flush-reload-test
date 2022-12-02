@@ -6,3 +6,6 @@
 # Ignore test output
 /tests/t*
 !/tests/t*.nim
+
+# Ignore debugging
+.gdb_info

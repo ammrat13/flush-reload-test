@@ -4,6 +4,10 @@
 ## architecture-specific code. For instance, it has to flush the cache and read
 ## the cycle counters. This code implements the low-level primitives needed by
 ## the code.
+##
+## Note that spinning for a certain number of cycles is not implemented in
+## assembly. Implementing it in a high-level language gives no drawbacks in
+## terms of accuracy.
 
 
 .global rdtsc

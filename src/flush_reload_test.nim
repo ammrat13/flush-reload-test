@@ -1,8 +1,16 @@
 {.compile: "./primitives.s".}
 proc rdtsc*(): uint32 {.importc.}
-proc probe*(a: ptr): uint32 {.importc.}
+proc probe*(a: ref or ptr): uint32 {.importc.}
+
+proc spin*(n: uint32) =
+  let start_time = rdtsc()
+  while rdtsc() - start_time < n:
+    continue
 
 when isMainModule:
-  var x: uint64 = 5
-  while true:
-    echo probe(addr(x))
+
+  let s = rdtsc()
+  spin(2500)
+  let c = rdtsc()
+
+  echo c - s
