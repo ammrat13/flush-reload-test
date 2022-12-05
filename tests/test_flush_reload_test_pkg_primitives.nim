@@ -46,3 +46,13 @@ suite "primitives":
       let r2 = probe x
       # Assert correct behavior
       check r1 > r2
+
+  test "spin_smoke":
+    ## Check that the spin method returns
+    spin 2500
+
+  test "spin_time":
+    ## Check that spinning waits for at least as long as needed
+    let start_time = rdtsc()
+    spin 2500
+    check rdtsc() - start_time > 2500
