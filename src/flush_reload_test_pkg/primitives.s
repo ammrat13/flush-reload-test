@@ -1,35 +1,15 @@
-## Basic assembly primitives for Flush+Reload
+## Primitives for Flush+Reload
 ##
-## The Flush+Reload attack, being a micro-architectural side-channel, relies on
-## architecture-specific code. For instance, it has to flush the cache and read
-## the cycle counters. This code implements the low-level primitives needed by
-## the code.
-##
-## Note that spinning for a certain number of cycles is not implemented in
-## assembly. Implementing it in a high-level language gives no drawbacks in
-## terms of accuracy.
+## See the corresponding `.nim` file for documentation.
 
 
 .global rdtsc
 rdtsc:
-  ## Read the timestamp counter
-  ##
-  ## Only the least significant 32 bits are reported. This overflows after 1.43s
-  ## at 3.0GHz, which should be enough for what we're trying to do.
-  ##
-  ## As suggested by the manual, we add fences before the command. This way, we
-  ## know all the commands before it have been executed, and that all the stores
-  ## before it have been flushed to memory. Similarly, we have a fence after the
-  ## command to ensure it completes before new commands are dispatched.
-  ##
-  ## See: [2], Volume 2, Chapter 4.3, RDTSC - Read Time-Stamp Counter
-  ## See: [2], Volume 2, Chapter 4.3, MFENCE - Memory Fence
-  ## See: [2], Volume 2, Chapter 3.2, LFENCE - Load Fence
 
   # Since %rdx is caller-saved and %rax is the return value, we don't need to
   # save any registers
 
-  # Use the manual's suggestion for fences before the rdtsc [2]
+  # Use the SDM's suggestion for fences before the rdtsc
   # We don't need the second lfence since we don't need the rdtsc to time the
   # instructions afterward
   mfence
@@ -41,23 +21,11 @@ rdtsc:
 
 .global probe
 probe:
-  ## Probe the time it takes to access an address
-  ##
-  ## This code access the address passed to it as the first parameter. It times
-  ## how long it takes the processor to access it, then flushes it from the
-  ## cache.
-  ##
-  ## Only the least significant 32 bits are used in timing. The timer will
-  ## overflow after 1.43s at 3.0GHz. However, memory accesses should be much
-  ## faster than that.
-  ##
-  ## See: [1]
-  ## See: proc rdtsc(): uint32
 
   # The %rdi, %rsi, and %rdx registers are caller-saved, and %rax contains the
   # result. We don't need to save any registers
 
-  # Use the manual's suggestion for fences before the rdtsc [2]
+  # Use the SDM's suggestion for fences before the rdtsc
   # This way, all instructions have retired and written to memory before we
   # start the clock
   mfence
