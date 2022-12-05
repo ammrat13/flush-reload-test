@@ -9,3 +9,6 @@
 
 # Ignore debugging
 .gdb_info
+
+# Ignore documentation
+/htmldocs/

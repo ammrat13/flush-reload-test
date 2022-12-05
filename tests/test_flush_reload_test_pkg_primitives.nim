@@ -1,5 +1,5 @@
 import std/unittest
-import flush_reload_test
+import flush_reload_test_pkg/primitives
 
 
 suite "primitives":
