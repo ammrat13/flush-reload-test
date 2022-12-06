@@ -28,6 +28,7 @@ when isMainModule:
   var res = newSeqOfCap[uint32](c.iterations)
   for _ in 1..c.iterations:
     res.add(probe(a))
+    spin(2500)
 
   for x in res:
     echo x
