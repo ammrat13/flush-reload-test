@@ -8,7 +8,13 @@
 !/tests/t*.nim
 
 # Ignore debugging
+.gdb_history
 .gdb_info
+*.sig
+*.asc
 
 # Ignore documentation
 /htmldocs/
+
+# Ignore GnuPG test
+/gnupg-1.4.13/
