@@ -6,6 +6,7 @@
 # Ignore test output
 /tests/t*
 !/tests/t*.nim
+/run.sh.csv
 
 # Ignore debugging
 .gdb_history
