@@ -1,4 +1,5 @@
 import std/bitops
+import std/strutils
 import std/sequtils
 import std/memfiles
 import flush_reload_test_pkg/primitives
@@ -46,5 +47,5 @@ when isMainModule:
   stderr.writeLine ""
   stderr.writeLine "Writing file..."
   for r in results:
-    echo r
+    echo r.join(",")
   stderr.writeLine "Done writing file"
