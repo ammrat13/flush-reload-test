@@ -27,7 +27,12 @@ proc rdtsc*(): uint32 {.importc.}
   ## * Intel SDM, Volume 2, Chapter 4.3, RDTSC - Read Time-Stamp Counter
   ## * Intel SDM, Volume 2, Chapter 4.3, MFENCE - Memory Fence
   ## * Intel SDM, Volume 2, Chapter 3.2, LFENCE - Load Fence
-proc probe*(a: ref or ptr): uint32 {.importc.}
+
+proc probe*[T](a: ptr T): uint32 {.importc.}
+  ## See: `probe <#probe,pointer>`_
+proc probe*[T](a: ref T): uint32 {.importc.}
+  ## See: `probe <#probe,pointer>`_
+proc probe*(a: pointer): uint32 {.importc.}
   ## Probe the time it takes to access an address
   ##
   ## This code accesses the address passed to it as the first parameter. It
