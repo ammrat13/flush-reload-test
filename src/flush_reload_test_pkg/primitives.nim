@@ -50,16 +50,22 @@ proc probe*(a: pointer): uint32 {.importc.}
   ##  * FLUSH+RELOAD Paper
   ##  * `rdtsc <#rdtsc>`_
 
-proc spin*(n: uint32) =
-  ## Spinlock until a certain number of cycles have passed
+proc spin*(n: uint32, start_time: uint32) =
+  ## Spinlock until a certain number of cycles have passed since `start_time`
   ##
   ## This code continuously reads the timestamp counter until it reads at least
-  ## `n` more than it did when the subroutine first called `rdtsc()`. In other
-  ## words, it spins for at least `n` cycles.
+  ## `n` more than the value specified as the parameter. In other words, it
+  ## spins for at least `n` cycles.
   ##
   ## Note: The value for `n` should not be too close to `high(uint32)`.
   ## Otherwise, the timer could overflow, causing the code to miss the fact that
   ## `n` cycles have elapsed.
-  let start_time = rdtsc()
   while rdtsc() - start_time < n:
     continue
+
+proc spin*(n: uint32) =
+  ## Spinlock until a certain number of cycles have passed
+  ##
+  ## Calls the overloaded version of this method, with the `start_time` set to
+  ## the time read by `rdtsc <#rdtsc>`_. See: `spin <#spin,uint32,uint32>`_.
+  spin(n, rdtsc())

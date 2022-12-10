@@ -9,10 +9,12 @@ OFILE="run.sh.csv"
 
 rm -f "${SFILE}.sig"
 
+nimble build -d:release
+
 taskset 0x1 ./flush_reload_test \
-    -n:5000 \
+    -n:20000 -d:2500 \
     "${GNUPG}" \
-    581472 \
+    581472 662000 660688 \
     >"${OFILE}" 2>/dev/null &
 taskset 0x2 "${GNUPG}" --sign --detach-sig "${SFILE}"
 

@@ -31,13 +31,23 @@ when isMainModule:
   var results_raw = newSeqOfCap[uint32](c.iters * cast[uint64](c.offsets.len))
   stderr.writeLine "Allocated space for results"
 
-  # Probe
   stderr.writeLine ""
   stderr.writeLine "Probing..."
+  # Performance is critical during the probe
+  # Optimize in release mode
+  when defined(release):
+    {.push checks: off, assertions: off, optimize: speed .}
+
+  # Actually do the probe
   for _ in 1..c.iters:
+    let start = rdtsc()
     for a in addrs:
       results_raw.add(probe a)
-    spin(2500)
+    spin(c.delay, start)
+
+  # Pop the optimization pragmas
+  when defined(release):
+    {.pop.}
   stderr.writeLine "Done probing"
 
   # Process results
