@@ -12,7 +12,6 @@ rdtsc:
   # Use the SDM's suggestion for fences before the rdtsc
   # We don't need the second lfence since we don't need the rdtsc to time the
   # instructions afterward
-  mfence
   lfence
   rdtsc
 
