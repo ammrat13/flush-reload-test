@@ -28,7 +28,9 @@ when isMainModule:
 
   # Allocate memory for the result
   # Do it in one shot
-  var results_raw = newSeqOfCap[uint32](c.iters * cast[uint64](c.offsets.len))
+  var results_raw = newSeqOfCap[uint32](
+    c.iters * (1 + cast[uint64](c.offsets.len))
+  )
   stderr.writeLine "Allocated space for results"
 
   stderr.writeLine ""
@@ -41,6 +43,7 @@ when isMainModule:
   # Actually do the probe
   for _ in 1..c.iters:
     let start = rdtsc()
+    results_raw.add(start)
     for a in addrs:
       results_raw.add(probe a)
     spin(c.delay, start)
@@ -56,6 +59,7 @@ when isMainModule:
   # Write the results
   stderr.writeLine ""
   stderr.writeLine "Writing file..."
+  echo "tsc," & c.offsets.map(proc(x: uint64): string = "off" & $x).join(",")
   for r in results:
     echo r.join(",")
   stderr.writeLine "Done writing file"
