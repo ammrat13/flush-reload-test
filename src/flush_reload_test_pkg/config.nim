@@ -9,7 +9,7 @@ type Config* = ref object
   fname*: string        ## The file on which to probe
   offsets*: seq[uint64] ## The offsets into the file to probe
 
-  delay*: uint64 ## How long to wait between probes
+  delay*: uint32 ## How long to wait between probes
   iters*: uint64 ## How many times to probe all the offsets
 
 proc `$`*(x: Config): string =
@@ -42,7 +42,7 @@ proc get_config*(): Config =
     if kind in {cmdLongOption, cmdShortOption}:
       case key
       of "delay","d":
-        result.delay = parseBiggestUInt val
+        result.delay = cast[uint32](parseBiggestUInt val)
       of "iterations","n":
         result.iters = parseBiggestUInt val
       else:
