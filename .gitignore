@@ -13,6 +13,8 @@
 .gdb_info
 *.sig
 *.asc
+*.pgp
+*.out
 
 # Ignore documentation
 /htmldocs/
