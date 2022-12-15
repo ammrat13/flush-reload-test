@@ -3,7 +3,7 @@
 
 export GNUPGHOME="${PWD}/gnupg-1.4.13/home/"
 
-GNUPG="./gnupg-1.4.13/install/bin/gpg"
+GNUPG="./gnupg/install/bin/gpg"
 SFILE="README.md"
 
 rm -f "${SFILE}.sig"

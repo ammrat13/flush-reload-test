@@ -21,7 +21,7 @@
 
 # Ignore GnuPG source
 # Keep the binaries though
-/gnupg-1.4.13/gnupg-1.4.13.tar.bz2
-/gnupg-1.4.13/src/
-/gnupg-1.4.13/home/
-/gnupg-1.4.13/install/share/
+/gnupg/gnupg-1.4.13.tar.bz2
+/gnupg/src/
+/gnupg/home/
+/gnupg/install/share/
