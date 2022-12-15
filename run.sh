@@ -11,9 +11,9 @@ rm -f "${SFILE}.sig"
 nimble build -d:release >&2
 
 taskset 0x1 ./flush_reload_test \
-    -n:20000 -d:2500 \
+    -n:100000 -d:1500 \
     "${GNUPG}" \
-    662000 660688 657783 \
+    662000 \
     &
 taskset 0x2 "${GNUPG}" --sign --detach-sig "${SFILE}" >&2
 
