@@ -25,3 +25,6 @@
 /gnupg/src/
 /gnupg/home/
 /gnupg/install/share/
+
+# Ignore IDE
+/.vscode/
