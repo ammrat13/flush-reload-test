@@ -61,9 +61,9 @@ takes options for how long each timeslice should be and how many slices to
 record.
 
 A copy of the victim `gnupg` binary used can be found in the `/gnupg/`
-directory. That folder also has the script used to build the program under GCC
-12.2.0. One can use the `/run.sh` script to spy on a signature and dump the raw
-data to standard out.
+directory. That folder also has the home directory used, as well as the script
+used to build the program under GCC 12.2.0. One can use the `/run.sh` script to
+spy on a signature and dump the raw data to standard out.
 
 The raw data can be analyzed with the script `/analysis/analyze.nim`. Again, one
 can check that file for the command-line options the script takes. It takes one
@@ -79,6 +79,8 @@ this analysis multiple times and manually combine the results to clean the data.
 This code is consistently able to recover `d_p` with approximately a 1% error
 rate. These errors are often bit-flips, but the analysis also often mistakes two
 consecutive `0`s for a `1` or vice versa.
+
+It only works on 4096-bit RSA keys. It doesn't work for 2048-bit keys or lower.
 
 
 ## References
