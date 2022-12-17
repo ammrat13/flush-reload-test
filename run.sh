@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script to run FLUSH+RELOAD on GnuPG
 
-export GNUPGHOME="${PWD}/gnupg-1.4.13/home/"
+export GNUPGHOME="${PWD}/gnupg/home/"
 
 GNUPG="./gnupg/install/bin/gpg"
 SFILE="README.md"
