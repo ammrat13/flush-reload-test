@@ -21,11 +21,14 @@
 /htmldocs/
 
 # Ignore GnuPG source
-# Keep the binaries though
+# Keep lone the binary though
 /gnupg/gnupg-1.4.13.tar.bz2
 /gnupg/src/
 /gnupg/home/
 /gnupg/install/share/
+/gnupg/install/bin/gpg-zip
+/gnupg/install/bin/gpgsplit
+/gnupg/install/bin/gpgv
 
 # Ignore IDE
 /.vscode/
