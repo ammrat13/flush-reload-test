@@ -2,6 +2,7 @@
 /flush_reload_test
 /build/
 /nimcache/
+/analysis/analyze
 
 # Ignore test output
 /tests/t*
