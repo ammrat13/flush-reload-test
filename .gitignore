@@ -20,11 +20,10 @@
 # Ignore documentation
 /htmldocs/
 
-# Ignore GnuPG source
-# Keep lone the binary though
+# Ignore GnuPG source and auxilary files
+# Keep lone the binary
 /gnupg/gnupg-1.4.13.tar.bz2
 /gnupg/src/
-/gnupg/home/
 /gnupg/install/share/
 /gnupg/install/bin/gpg-zip
 /gnupg/install/bin/gpgsplit
